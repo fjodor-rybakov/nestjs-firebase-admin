@@ -41,7 +41,6 @@ import { Module } from '@nestjs/common';
 import { FirebaseAdminModule } from '@nestjs-add-ons/firebase-admin';
 import { MyService } from './my-service';
 
-@InjectDynamicProviders('dist/**/*.animal.js')
 @Module({
   imports: [
     FirebaseAdminModule.forRootAsync({
@@ -90,7 +89,6 @@ import { FirebaseAdminModule } from '@nestjs-add-ons/firebase-admin';
 import { MyServiceForApp1 } from './mmy-service-for-app1';
 import { MyServiceForApp2 } from './mmy-service-for-app2';
 
-@InjectDynamicProviders('dist/**/*.animal.js')
 @Module({
   imports: [
     FirebaseAdminModule.forRootAsync({
