@@ -20,10 +20,10 @@ $ npm install -E @nestjs-add-ons/firebase-admin firebase-admin
 
 ## ▶️ Usage <a name="Usage"></a>
 
-Enable shutdown hook in bootstrap function to take care of resource release
+Enable shutdown hooks in bootstrap function to take care of resource release
 
 ```typescript
-async function bootstrap() {
+async function bootstrap(): Promise<void> {
   const app = await NestFactory.create(AppModule);
 
   app.enableShutdownHooks();
