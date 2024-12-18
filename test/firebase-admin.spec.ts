@@ -1,5 +1,30 @@
+import { Module } from '@nestjs/common';
+import { constructFirebaseAppName, FirebaseAdminModule } from '../src';
+import { NestFactory } from '@nestjs/core';
+import { App } from 'firebase-admin/app';
+
 describe('Firebase admin', () => {
-  it('should be able to be created', () => {
-    // TODO: Add tests
+  it('should create FirebaseAdminModule and export default firebase app', async () => {
+    const someDatabaseUrl = 'some url';
+
+    @Module({
+      imports: [
+        FirebaseAdminModule.forRoot({
+          databaseURL: someDatabaseUrl,
+        }),
+      ],
+    })
+    class AppModule {}
+
+    const app = await NestFactory.createApplicationContext(AppModule);
+
+    app.enableShutdownHooks();
+
+    const firebaseApp = app.get<App>(constructFirebaseAppName());
+
+    expect(firebaseApp).toBeDefined();
+    expect(firebaseApp.options).toHaveProperty('databaseURL', someDatabaseUrl);
+
+    await app.close();
   });
 });

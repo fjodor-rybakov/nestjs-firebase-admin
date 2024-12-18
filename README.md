@@ -24,7 +24,7 @@ Enable shutdown hook in bootstrap function to take care of resource release
 
 ```typescript
 async function bootstrap() {
-  const app = await NestFactory.create<NestFastifyApplication>(AppModule);
+  const app = await NestFactory.create(AppModule);
 
   app.enableShutdownHooks();
 }
