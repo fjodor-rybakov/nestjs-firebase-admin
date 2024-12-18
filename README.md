@@ -71,6 +71,12 @@ export class MyService {
     private readonly firebaseApp: App
   ) {
   }
+
+  public async sendPushNotification(): Promise<void> {
+    await getMessaging(this.firebaseApp).send({
+      // notification data
+    })
+  }
 }
 ```
 
@@ -119,6 +125,12 @@ export class MyServiceForApp1 {
     private readonly firebaseApp: App
   ) {
   }
+
+  public async sendPushNotification(): Promise<void> {
+    await getMessaging(this.firebaseApp).send({
+      // notification data
+    })
+  }
 }
 ```
 
@@ -135,6 +147,12 @@ export class MyServiceForApp2 {
     @InjectFirebaseAdminApp('app2')
     private readonly firebaseApp: App
   ) {
+  }
+
+  public async sendPushNotification(): Promise<void> {
+    await getMessaging(this.firebaseApp).send({
+      // notification data
+    })
   }
 }
 ```
