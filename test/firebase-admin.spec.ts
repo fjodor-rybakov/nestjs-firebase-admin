@@ -9,7 +9,7 @@ describe('Firebase admin', () => {
 
     @Module({
       imports: [
-        FirebaseAdminModule.forRoot({
+        FirebaseAdminModule.register({
           databaseURL: someDatabaseUrl,
         }),
       ],

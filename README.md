@@ -43,7 +43,7 @@ import { MyService } from './my-service';
 
 @Module({
   imports: [
-    FirebaseAdminModule.forRootAsync({
+    FirebaseAdminModule.registerAsync({
       useFactory: () => ({
         // ...setup options
       }),
@@ -91,13 +91,13 @@ import { MyServiceForApp2 } from './mmy-service-for-app2';
 
 @Module({
   imports: [
-    FirebaseAdminModule.forRootAsync({
+    FirebaseAdminModule.registerAsync({
       appName: 'app1',
       useFactory: () => ({
         // ...setup options
       }),
     }),
-    FirebaseAdminModule.forRootAsync({
+    FirebaseAdminModule.registerAsync({
       appName: 'app2',
       useFactory: () => ({
         // ...setup options
