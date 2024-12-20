@@ -13,7 +13,6 @@ export const {
   ConfigurableModuleClass: FirebaseAdminModule,
   MODULE_OPTIONS_TOKEN: FIREBASE_ADMIN_MODULE_OPTIONS_TOKEN,
 } = new ConfigurableModuleBuilder<ModuleOptions>()
-  .setClassMethodName('forRoot')
   .setFactoryMethodName('setupFirebaseOptions')
   .setExtras<ExtraModuleOptions>(extraDefault, (definition, extras) => {
     const { isGlobal, appName } = extras;
