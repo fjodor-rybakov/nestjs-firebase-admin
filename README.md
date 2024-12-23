@@ -38,12 +38,12 @@ Just create module in import
 /* app.module.ts */
 
 import { Module } from '@nestjs/common';
-import { FirebaseAdminModule } from '@nestjs-add-ons/firebase-admin';
+import { FirebaseAdminCoreModule } from '@nestjs-add-ons/firebase-admin';
 import { MyService } from './my-service';
 
 @Module({
   imports: [
-    FirebaseAdminModule.registerAsync({
+    FirebaseAdminCoreModule.forRootAsync({
       useFactory: () => ({
         // ...setup options
       }),
@@ -52,6 +52,26 @@ import { MyService } from './my-service';
   providers: [MyService]
 })
 export class AppModule {}
+```
+
+In order for providers to be available, you need to inject them via `FirebaseAdminCoreModule.forFeature()` function or 
+set `isGlobal: true` in dynamic module options
+
+```typescript
+/* my-test.module.ts */
+
+import { Module } from '@nestjs/common';
+import { FirebaseAdminCoreModule } from '@nestjs-add-ons/firebase-admin';
+import { MyService } from './my-service';
+
+@Module({
+  imports: [
+    FirebaseAdminCoreModule.forFeature(),
+    // or FirebaseAdminCoreModule.forFeature(['app_1', 'app_2']) if firebase app is presented
+  ],
+  providers: [MyService]
+})
+export class MyTestModule {}
 ```
 
 In the service, you can inject firebase application via the `InjectFirebaseAdminApp` decorator
@@ -85,19 +105,19 @@ You can also create multiply firebase applications
 /* app.module.ts */
 
 import { Module } from '@nestjs/common';
-import { FirebaseAdminModule } from '@nestjs-add-ons/firebase-admin';
-import { MyServiceForApp1 } from './mmy-service-for-app1';
-import { MyServiceForApp2 } from './mmy-service-for-app2';
+import { FirebaseAdminCoreModule } from '@nestjs-add-ons/firebase-admin';
+import { MyServiceForApp1 } from './my-service-for-app1';
+import { MyServiceForApp2 } from './my-service-for-app2';
 
 @Module({
   imports: [
-    FirebaseAdminModule.registerAsync({
+    FirebaseAdminCoreModule.forRootAsync({
       appName: 'app1',
       useFactory: () => ({
         // ...setup options
       }),
     }),
-    FirebaseAdminModule.registerAsync({
+    FirebaseAdminCoreModule.forRootAsync({
       appName: 'app2',
       useFactory: () => ({
         // ...setup options

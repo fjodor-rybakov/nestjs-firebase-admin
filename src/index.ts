@@ -2,8 +2,8 @@ import { InjectFirebaseAdminApp } from './decorators/inject-firebase-admin-app.d
 import {
   ExtraModuleOptions,
   FirebaseAdminModule,
-  ModuleOptions,
-} from './firebase-admin.module-definition';
+} from './firebase-admin.module';
+import { ModuleOptions } from './firebase-admin.module-definition';
 import { constructFirebaseAppName } from './utils/construct-firebase-app-name';
 
 // Modules
