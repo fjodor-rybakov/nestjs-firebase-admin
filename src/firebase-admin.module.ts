@@ -15,7 +15,7 @@ export type ExtraModuleOptions = {
 
 @Module({})
 export class FirebaseAdminModule {
-  static forRoot(
+  public static forRoot(
     options: typeof FIREBASE_ADMIN_OPTIONS_TYPE & ExtraModuleOptions,
   ): DynamicModule {
     const providers = FirebaseAdminModule.createProviders([options.appName]);
@@ -29,7 +29,7 @@ export class FirebaseAdminModule {
     };
   }
 
-  static forRootAsync(
+  public static forRootAsync(
     options: typeof FIREBASE_ADMIN_ASYNC_OPTIONS_TYPE & ExtraModuleOptions,
   ): DynamicModule {
     const providers = FirebaseAdminModule.createProviders([options.appName]);
